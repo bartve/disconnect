@@ -1,0 +1,41 @@
+{
+  "name": "disconnect",
+  "description": "Easy to use client with OAuth support to connect with the discogs.com API v.2.0",
+  "version": "0.1.0",
+  "keywords": [
+    "discogs",
+    "api",
+    "client",
+    "oauth"
+  ],
+  "main": "index.js",
+  "directories": {
+    "lib": "./lib"
+  },
+  "author": {
+    "name": "Bart van Eijck",
+    "email": "voodoo107@hotmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bartve/disconnect.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "oauth-1.0a": "0.1.x"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "bugs": {
+    "url": "https://github.com/bartve/disconnect/issues"
+  },
+  "homepage": "https://github.com/bartve/disconnect",
+  "readme": "## About\r\n\r\n`disconnect` is a [Node.js](http://www.nodejs.org) client library that connects with the [Discogs.com API v2.0](http://www.discogs.com/developers/).\r\n\r\n## Features\r\n\r\n  * Covers all API endpoints (well, soon anyway ;)\r\n  * All functions implement the standard `function(err, data)` format for the callback\r\n  * Includes OAuth 1.0a tools. Just plug in your consumer key and secret and do the OAuth dance\r\n  * API functions grouped in their own namespace for easy access and isolation\r\n  \r\n## Todo\r\n\r\n  * Add collection folder functions (soon)\r\n  * Add [rate limiting](http://www.discogs.com/developers/accessing.html#rate-limiting) support\r\n  * Add tests\r\n\r\n## Installation\r\n\r\n`$ npm install disconnect`\r\n\r\n## Structure\r\nThe global structure of `disconnect` looks as follows:\r\n```\r\nrequire('disconnect') -> new Client() -> database()\r\n                                      -> marketplace()\r\n                                      -> user() -> collection()\r\n                                                -> wantlist()\r\n                      -> util\r\n```\r\nTo get the user wantlist functions: \r\n```javascript\r\nvar Discogs = require('disconnect').Client;\r\nvar wantlist = new Discogs().user().wantlist();\r\n```\r\nMore examples below.\r\n\r\n## Usage\r\n\r\n### Basic\r\nHere are some basic usage examples that connect with the public API. Error handling has been left out for demonstrational purposes.\r\n\r\n#### Init\r\n\r\n```javascript\r\nvar Discogs = require('disconnect').Client;\r\n```\r\n#### Go\r\n\r\nGet release data\r\n```javascript\r\napp.get('/release/:id', function(req, res){\r\n\tvar db = new Discogs().database();\r\n\tdb.release(req.params.id, function(err, data){\r\n\t\tres.send(data);\r\n\t});\r\n});\r\n```\r\n\r\nGet page 2 of user's public collection showing 75 releases.\r\nThe second param is the collection folder ID where 0 is always the \"All\" folder.\r\n```javascript\r\napp.get('/collection/:user', function(req, res){\r\n\tvar col = new Discogs().user().collection();\r\n\tcol.releases(req.params.user, 0, {page:2, per_page:75}, function(err, data){\r\n\t\tres.send(data);\r\n\t});\r\n});\r\n```\r\n\r\nEasy!\r\n\r\n### OAuth\r\nBelow are the steps that involve getting a valid OAuth access token from Discogs.\r\n\r\n#### 1. Get a request token\r\n```javascript\r\napp.get('/authorize', function(req, res){\r\n\tvar dis = new Discogs();\r\n\tdis.getRequestToken(\r\n\t\t'CONSUMER_KEY', \r\n\t\t'CONSUMER_SECRET', \r\n\t\t'http://your-script-url/callback', \r\n\t\tfunction(err, requestData){\r\n\t\t\t// Persist \"requestData\" here so that the callback handler can \r\n\t\t\t// access it later after returning from the authorize url\r\n\t\t\tres.redirect(requestData.authorizeUrl);\r\n\t\t}\r\n\t);\r\n});\r\n```\r\n#### 2. Authorize\r\nAfter redirection to the Discogs authorize URL in step 1, authorize the application.\r\n\r\n#### 3. Get an access token\r\n```javascript\r\napp.get('/callback', function(req, res){\r\n\tvar dis = new Discogs();\r\n\tdis.getAccessToken(\r\n\t\trequestData, \r\n\t\treq.query.oauth_verifier, // Verification code sent back by Discogs\r\n\t\tfunction(err, accessData){\r\n\t\t\t// From this point on we no longer need \"requestData\", so it can be deleted\r\n\t\t\t// Persist \"accessData\" here so that it can be used to make further OAuth calls \r\n\t\t\tres.send('Received access token!');\r\n\t\t}\r\n\t);\r\n});\r\n```\r\n#### 4. Make OAuth calls\r\n```javascript\r\napp.get('/identity', function(req, res){\r\n\tvar dis = new Discogs(accessData);\r\n\tdis.identity(function(err, data){\r\n\t\tres.send(data);\r\n\t});\r\n});\r\n```\r\n\r\nNow that wasn't too hard, was it?\r\n\r\n## Resources\r\n\r\n  * [Discogs API 2.0 documentation](http://www.discogs.com/developers/)\r\n  * [The OAuth Bible](http://oauthbible.com/)\r\n\r\n## License\r\n\r\nMIT",
+  "readmeFilename": "README.md",
+  "_id": "disconnect@0.1.0",
+  "scripts": {},
+  "_shasum": "a420a4a24288a1a5aed329555620b0db63f42921",
+  "_from": "disconnect@"
+}
