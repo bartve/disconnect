@@ -7,14 +7,13 @@
 
 ## Features
 
-  * Covers all API endpoints (well, soon anyway ;)
+  * Covers all API endpoints
   * All functions implement the standard `function(err, data)` format for the callback
   * Includes OAuth 1.0a tools. Just plug in your consumer key and secret and do the OAuth dance
   * API functions grouped in their own namespace for easy access and isolation
   
 ## Todo
 
-  * Add collection folder functions (soon)
   * Add [rate limiting](http://www.discogs.com/developers/accessing.html#rate-limiting) support
   * Add tests
 
@@ -106,8 +105,7 @@ app.get('/callback', function(req, res){
 		requestData, 
 		req.query.oauth_verifier, // Verification code sent back by Discogs
 		function(err, accessData){
-			// From this point on we no longer need "requestData", 
-			// so it can be deleted.
+			// From this point on we no longer need "requestData", so it can be deleted.
 			// Persist "accessData" here for following OAuth calls 
 			res.send('Received access token!');
 		}

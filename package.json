@@ -1,7 +1,7 @@
 {
   "name": "disconnect",
-  "description": "Easy to use client with OAuth support to connect with the discogs.com API v.2.0",
-  "version": "0.1.0",
+  "description": "Easy to use client with OAuth support to connect with the discogs.com API v2.0",
+  "version": "0.1.1",
   "keywords": [
     "discogs",
     "api",
