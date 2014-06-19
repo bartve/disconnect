@@ -1,14 +1,13 @@
-[![NPM version](https://badge.fury.io/js/disconnect.svg)](http://badge.fury.io/js/disconnect)
-[![Dependency Status](https://david-dm.org/bartve/disconnect.png)](https://david-dm.org/bartve/disconnect)
-
 ## About
 
 `disconnect` is a [Node.js](http://www.nodejs.org) client library that connects with the [Discogs.com API v2.0](http://www.discogs.com/developers/).
 
+[![NPM version](https://badge.fury.io/js/disconnect.svg)](http://badge.fury.io/js/disconnect) [![Dependency Status](https://david-dm.org/bartve/disconnect.png)](https://david-dm.org/bartve/disconnect)
+
 ## Features
 
   * Covers all API endpoints
-  * All functions implement the standard `function(err, data)` format for the callback
+  * All functions implement a standard `function(err, data, rateLimit)` format for the callback
   * Includes OAuth 1.0a tools. Just plug in your consumer key and secret and do the OAuth dance
   * API functions grouped in their own namespace for easy access and isolation
   
@@ -112,6 +111,7 @@ app.get('/callback', function(req, res){
 	);
 });
 ```
+
 #### 4. Make OAuth calls
 Simply provide the constructor with the access data object persisted in step 3.
 ```javascript
@@ -125,6 +125,23 @@ app.get('/identity', function(req, res){
 The User-Agent may still be passed for OAuth calls.
 ```javascript
 var dis = new Discogs('MyUserAgent/1.0', accessData);
+```
+
+### Images
+Image requests require authentication and are subject to [rate limiting](http://www.discogs.com/developers/accessing.html#rate-limiting).
+```javascript
+app.get('/image/:filename', function(req, res){
+	var db = new Discogs(accessData).database(),
+		file = req.params.filename;
+	db.image(file, function(err, data, rateLimit){
+		// Data contains the raw binary image data
+		require('fs').writeFile(file, data, 'binary', function(err){
+			// See your current limits
+			console.log(rateLimit);
+			res.send('Image saved!');
+		});
+	});
+});
 ```
 
 ## Resources
