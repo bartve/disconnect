@@ -7,14 +7,14 @@
 ## Features
 
   * Covers all API endpoints
+  * Supports [pagination](http://www.discogs.com/developers/accessing.html#pagination), [rate limiting](http://www.discogs.com/developers/accessing.html#rate-limiting), etc.
   * All functions implement a standard `function(err, data, rateLimit)` format for the callback
   * Includes OAuth 1.0a tools. Just plug in your consumer key and secret and do the OAuth dance
   * API functions grouped in their own namespace for easy access and isolation
   
 ## Todo
 
-  * Add [rate limiting](http://www.discogs.com/developers/accessing.html#rate-limiting) support
-  * Add tests
+  * Add tests!
 
 ## Installation
 
