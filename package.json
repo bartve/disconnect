@@ -1,7 +1,7 @@
 {
   "name": "disconnect",
   "description": "Easy to use client to connect with the discogs.com API v2.0",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "keywords": ["discogs", "api", "client", "oauth"],
   "homepage": "https://github.com/bartve/disconnect",
   "bugs": "https://github.com/bartve/disconnect/issues",
