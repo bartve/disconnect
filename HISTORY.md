@@ -1,3 +1,7 @@
+0.3.0 / 2014-06-24
+==================
+  * Added automatic request throttle of 1 request per second queueing up to 10 requests
+
 0.2.1 / 2014-06-20
 ==================
   * Fixed data encoding bug for gzipped response from `0.2.0`
