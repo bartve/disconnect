@@ -1,3 +1,8 @@
+Unreleased
+==========
+  * Fixed a litte bug in request queue remaining slots calculation
+  * Started adding unit tests using `wru`
+
 0.3.0 / 2014-06-24
 ==================
   * Added automatic request throttle of 1 request per second queueing up to 10 requests
