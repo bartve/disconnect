@@ -14,7 +14,7 @@
   
 ## Todo
 
-  * Add tests!
+  * Add more tests
 
 ## Installation
 

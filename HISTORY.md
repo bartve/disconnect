@@ -1,6 +1,6 @@
-Unreleased
-==========
-  * Fixed a litte bug in request queue remaining slots calculation
+0.3.1 / 2014-06-26
+==================
+  * Fixed a litte bug in the calculation of free positions in the request queue
   * Started adding unit tests using `wru`
 
 0.3.0 / 2014-06-24
