@@ -58,7 +58,7 @@ app.get('/release/:id', function(req, res){
 });
 ```
 
-Set your own custom [User-Agent](http://www.discogs.com/developers/accessing.html#required-headers). This is optional as when omitted `disconnect` will set a default one with the value `DisConnectClient/x.x.x`.
+Set your own custom [User-Agent](http://www.discogs.com/developers/accessing.html#required-headers). This is optional as when omitted `disconnect` will set a default one with the value `DisConnectClient/x.x.x` where `x.x.x` is the installed version of `disconnect`.
 ```javascript
 var dis = new Discogs('MyUserAgent/1.0');
 ```
