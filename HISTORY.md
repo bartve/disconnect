@@ -1,3 +1,7 @@
+0.3.4 / 2014-07-30
+==================
+  * Added `user().contributions()` and `user().submissions()` for the newly implemented endpoints
+
 0.3.3 / 2014-07-08
 ==================
   * Discogs has fixed the `/images/<filename>` endpoint, so changed `database().image()` accordingly
