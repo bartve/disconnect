@@ -1,3 +1,8 @@
+Unreleased
+==================
+  * Use `strict`
+  * Added local authentication check for the `database().search()` function
+
 0.3.4 / 2014-07-30
 ==================
   * Added `user().contributions()` and `user().submissions()` for the newly implemented endpoints
