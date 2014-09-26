@@ -7,7 +7,7 @@
 ## Features
 
   * Covers all API endpoints
-  * Supports [pagination](http://www.discogs.com/developers/accessing.html#pagination), [rate limiting](http://www.discogs.com/developers/accessing.html#rate-limiting), etc.
+  * Supports [pagination](http://www.discogs.com/developers/#page:home,header:home-pagination), [rate limiting](http://www.discogs.com/developers/#page:home,header:home-rate-limiting), etc.
   * All functions implement a standard `function(err, data, rateLimit)` format for the callback
   * Includes OAuth 1.0a tools. Just plug in your consumer key and secret and do the OAuth dance
   * API functions grouped in their own namespace for easy access and isolation
@@ -58,7 +58,7 @@ app.get('/release/:id', function(req, res){
 });
 ```
 
-Set your own custom [User-Agent](http://www.discogs.com/developers/accessing.html#required-headers). This is optional as when omitted `disconnect` will set a default one with the value `DisConnectClient/x.x.x` where `x.x.x` is the installed version of `disconnect`.
+Set your own custom [User-Agent](http://www.discogs.com/developers/#page:home,header:home-general-information). This is optional as when omitted `disconnect` will set a default one with the value `DisConnectClient/x.x.x` where `x.x.x` is the installed version of `disconnect`.
 ```javascript
 var dis = new Discogs('MyUserAgent/1.0');
 ```
@@ -128,7 +128,7 @@ var dis = new Discogs('MyUserAgent/1.0', accessData);
 ```
 
 ### Images
-Image requests require authentication and are subject to [rate limiting](http://www.discogs.com/developers/accessing.html#rate-limiting).
+Image requests require authentication and are subject to [rate limiting](http://www.discogs.com/developers/#page:home,header:home-rate-limiting).
 ```javascript
 app.get('/image/:filename', function(req, res){
 	var db = new Discogs(accessData).database(),
