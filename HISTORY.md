@@ -1,4 +1,4 @@
-Unreleased
+0.4.0 / 2014-10-15
 ==================
   * Use `strict`
   * Added local authentication check for the `database().search()` function
