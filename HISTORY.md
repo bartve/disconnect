@@ -1,3 +1,8 @@
+0.4.1 / 2014-10-16
+==================
+  * Fixed "Unexpected token u" error when trying to parse an `undefined` response value to JSON
+  * `marketplace().fee()` now accepts the price argument as both a number (int/float) and a literal string
+
 0.4.0 / 2014-10-15
 ==================
   * Use `strict`
