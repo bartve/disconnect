@@ -1,3 +1,8 @@
+0.4.2 / 2014-10-20
+==================
+  * Fixed `this` scoping in `about()`
+  * Switched from `http` to the newly implemented `https` Discogs API connection for added security
+
 0.4.1 / 2014-10-16
 ==================
   * Fixed "Unexpected token u" error when trying to parse an `undefined` response value to JSON
