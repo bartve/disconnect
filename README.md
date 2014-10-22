@@ -99,12 +99,10 @@ After redirection to the Discogs authorize URL in step 1, authorize the applicat
 #### 3. Get an access token
 ```javascript
 app.get('/callback', function(req, res){
-	var dis = new Discogs();
+	var dis = new Discogs(requestData);
 	dis.getAccessToken(
-		requestData, 
 		req.query.oauth_verifier, // Verification code sent back by Discogs
 		function(err, accessData){
-			// From this point on we no longer need "requestData", so it can be deleted.
 			// Persist "accessData" here for following OAuth calls 
 			res.send('Received access token!');
 		}
@@ -146,7 +144,7 @@ app.get('/image/:filename', function(req, res){
 
 ## Resources
 
-  * [Discogs API 2.0 documentation](http://www.discogs.com/developers/)
+  * [Discogs API documentation](http://www.discogs.com/developers/)
   * [The OAuth Bible](http://oauthbible.com/)
 
 ## License
