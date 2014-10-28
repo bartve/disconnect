@@ -15,7 +15,9 @@
     "type": "git",
     "url": "https://github.com/bartve/disconnect.git"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "node test/all.js"
+  },
   "dependencies": {
     "oauth-1.0a": "0.1.x"
   },
