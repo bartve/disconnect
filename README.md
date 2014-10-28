@@ -48,7 +48,7 @@ var Discogs = require('disconnect').Client;
 ```
 #### Go!
 
-Get release data.
+Get release data. Note that in the following examples the `app` variable is an [Express instance](http://expressjs.com/starter/hello-world.html) to handle incoming HTTP requests.
 ```javascript
 app.get('/release/:id', function(req, res){
 	var db = new Discogs().database();

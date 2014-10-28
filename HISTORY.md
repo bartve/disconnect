@@ -1,3 +1,8 @@
+unreleased
+==================
+  * Fixed a test which was failing due to changes in `0.5.0` and `npm test` now runs the tests (@Trott)
+  * Updated `README.md` to explain the `app` variable
+
 0.5.0 / 2014-10-22
 ==================
   * Replaced some short circuit evaluations and improved the general readability of `client.js`
