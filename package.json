@@ -2,7 +2,12 @@
   "name": "disconnect",
   "description": "An easy to use client library to connect with the discogs.com API v2.0",
   "version": "0.5.0",
-  "keywords": ["discogs", "api", "client", "oauth"],
+  "keywords": [
+    "discogs",
+    "api",
+    "client",
+    "oauth"
+  ],
   "homepage": "https://github.com/bartve/disconnect",
   "bugs": "https://github.com/bartve/disconnect/issues",
   "license": "MIT",
@@ -20,7 +25,8 @@
     "oauth-1.0a": "0.1.x"
   },
   "devDependencies": {
-	  "wru": "0.2.x"
+    "nock": "^0.48.1",
+    "wru": "0.2.x"
   },
   "engines": {
     "node": ">= 0.10.0"
