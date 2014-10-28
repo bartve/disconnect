@@ -18,7 +18,7 @@ var tests = module.exports = [
 		name: 'Test DiscogsClient._request()',
 		test: function(){
 			var client = new DiscogsClient();
-			client._request('/labels/1', wru.async(function(err, data){
+			client._request({url: '/labels/1'}, wru.async(function(err, data){
 				wru.assert('No error', !err);
 				wru.assert('Correct response data', (data.id && (data.id === 1)));
 			}));
