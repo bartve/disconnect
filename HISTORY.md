@@ -1,3 +1,7 @@
+unreleased
+==================
+  * The internal `oauth` object of `DiscogsClient` now only gets 3 status values: `null`, `request` and `access`
+
 0.5.1 / 2014-10-29
 ==================
   * Fixed a test which was failing due to changes in `0.5.0` and `npm test` now runs the tests (@Trott)
