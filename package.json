@@ -22,7 +22,8 @@
     "oauth-1.0a": "0.1.x"
   },
   "devDependencies": {
-	  "wru": "0.2.x"
+    "nock": "^0.48.1",
+    "wru": "0.2.x"
   },
   "engines": {
     "node": ">= 0.10.0"
