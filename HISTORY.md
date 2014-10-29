@@ -1,6 +1,7 @@
-unreleased
+0.5.1 / 2014-10-29
 ==================
   * Fixed a test which was failing due to changes in `0.5.0` and `npm test` now runs the tests (@Trott)
+  * Added the possibility to set a custom configuration object with `DiscogsClient.setConfig()` for Browserify + CORS or Proxy use cases (@Trott)
   * Updated `README.md` to explain the `app` variable
 
 0.5.0 / 2014-10-22

@@ -24,43 +24,14 @@ var tests = module.exports = [
 			}));
 		}
 	},{
-		name: 'Test DiscogsClient options parameter sets default host',
+		name: 'Test DiscogsClient with custom configuration',
 		test: function(){
-			nock('https://www.example.com')
-				.get('/labels/1')
-				.reply(200, '{"result": "success"}');
-
-			var client = new DiscogsClient(null, null, {host: 'www.example.com'});
+			nock('https://www.example.com').get('/labels/1').reply(200, '{"result": "success"}');
+			
+			var client = new DiscogsClient().setConfig({host: 'www.example.com'});
 			client._request({url: '/labels/1'}, wru.async(function(err, data){
 				wru.assert('No error', !err);
 				wru.assert('Correct response data', (data && data.result === 'success'));
-			}));
-		},
-		teardown: function () {
-			nock.cleanAll();
-		}
-	},{
-		name: 'Test DiscogsClient options parameter does not pollute other instances',
-		test: function(){
-			nock('https://www.example.com')
-				.get('/labels/1')
-				.reply(200, '{"result": "example.com is host"}');
-
-			nock('https://api.discogs.com')
-				.get('/labels/1')
-				.reply(200, '{"result": "api.discogs.com is host"}');
-
-			var clientWithOptions = new DiscogsClient(null, null, {host: 'www.example.com'});
-			var clientWithoutOptions = new DiscogsClient();
-
-			clientWithOptions._request({url: '/labels/1'}, wru.async(function(err, data){
-				wru.assert('No error', !err);
-				wru.assert('Correct response data', (data && data.result === 'example.com is host'));
-			}));
-
-			clientWithoutOptions._request({url: '/labels/1'}, wru.async(function(err, data){
-				wru.assert('No error', !err);
-				wru.assert('Correct response data', (data && data.result === 'api.discogs.com is host'));
 			}));
 		},
 		teardown: function () {
