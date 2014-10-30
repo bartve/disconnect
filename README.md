@@ -63,7 +63,7 @@ Set your own custom [User-Agent](http://www.discogs.com/developers/#page:home,he
 var dis = new Discogs('MyUserAgent/1.0');
 ```
 
-Get page 2 of user's public collection showing 75 releases.
+Get page 2 of a user's public collection showing 75 releases.
 The second param is the collection folder ID where 0 is always the "All" folder.
 ```javascript
 app.get('/collection/:user', function(req, res){
@@ -82,8 +82,8 @@ Below are the steps that involve getting a valid OAuth access token from Discogs
 app.get('/authorize', function(req, res){
 	var dis = new Discogs();
 	dis.getRequestToken(
-		'CONSUMER_KEY', 
-		'CONSUMER_SECRET', 
+		'YOUR_CONSUMER_KEY', 
+		'YOUR_CONSUMER_SECRET', 
 		'http://your-script-url/callback', 
 		function(err, requestData){
 			// Persist "requestData" here so that the callback handler can 
@@ -111,7 +111,7 @@ app.get('/callback', function(req, res){
 ```
 
 #### 4. Make OAuth calls
-Simply provide the constructor with the access data object persisted in step 3.
+Simply provide the constructor with the `accessData` object persisted in step 3.
 ```javascript
 app.get('/identity', function(req, res){
 	var dis = new Discogs(accessData);

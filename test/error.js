@@ -21,4 +21,4 @@ var tests = module.exports = [
 	}
 ];
 
-(!module.parent)&&wru.test(tests);
+if(!module.parent){ wru.test(tests); }
