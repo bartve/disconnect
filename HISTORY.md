@@ -1,3 +1,7 @@
+0.5.3 / 2014-12-02
+==================
+  * Fixed incorrect assumption that a Discogs order ID is numeric in `marketplace().orders()`
+
 0.5.2 / 2014-10-30
 ==================
   * Fixed incorrect reference to `this` from within a callback function in `DiscogsClient.about()`
