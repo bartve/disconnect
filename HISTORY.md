@@ -1,3 +1,9 @@
+0.6.0 / unreleased
+==================
+  * OAuth authentication is no longer embedded in `DiscogsClient`
+  * Added OAuth signature method configuration
+  * Added support for the new `Discogs Auth` authentication methods
+
 0.5.3 / 2014-12-02
 ==================
   * Fixed incorrect assumption that a Discogs order ID is numeric in `marketplace().orders()`

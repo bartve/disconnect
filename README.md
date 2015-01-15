@@ -8,7 +8,8 @@
 
   * Covers all API endpoints
   * Supports [pagination](http://www.discogs.com/developers/#page:home,header:home-pagination), [rate limiting](http://www.discogs.com/developers/#page:home,header:home-rate-limiting), etc.
-  * All functions implement a standard `function(err, data, rateLimit)` format for the callback
+  * All database, marketplace and user functions implement a standard `function(err, data, rateLimit)` format for the callback
+  * Easy access to protected endpoints with `Discogs Auth`
   * Includes OAuth 1.0a tools. Just plug in your consumer key and secret and do the OAuth dance
   * API functions grouped in their own namespace for easy access and isolation
   
@@ -23,18 +24,13 @@
 ## Structure
 The global structure of `disconnect` looks as follows:
 ```
-require('disconnect') -> new Client() -> database()
+require('disconnect') -> new Client() -> oauth()
+									  -> database()
                                       -> marketplace()
                                       -> user() -> collection()
                                                 -> wantlist()
                       -> util
 ```
-To get the user wantlist functions: 
-```javascript
-var Discogs = require('disconnect').Client;
-var wantlist = new Discogs().user().wantlist();
-```
-More examples below.
 
 ## Usage
 
@@ -48,13 +44,11 @@ var Discogs = require('disconnect').Client;
 ```
 #### Go!
 
-Get release data. Note that in the following examples the `app` variable is an [Express instance](http://expressjs.com/starter/hello-world.html) to handle incoming HTTP requests.
+Get the release data for the release that has the id 176126.
 ```javascript
-app.get('/release/:id', function(req, res){
-	var db = new Discogs().database();
-	db.release(req.params.id, function(err, data){
-		res.send(data);
-	});
+var db = new Discogs().database();
+db.release(176126, function(err, data){
+	console.log(data);
 });
 ```
 
@@ -63,25 +57,41 @@ Set your own custom [User-Agent](http://www.discogs.com/developers/#page:home,he
 var dis = new Discogs('MyUserAgent/1.0');
 ```
 
-Get page 2 of a user's public collection showing 75 releases.
+Get page 2 of USER_NAME's public collection showing 75 releases.
 The second param is the collection folder ID where 0 is always the "All" folder.
 ```javascript
-app.get('/collection/:user', function(req, res){
-	var col = new Discogs().user().collection();
-	col.releases(req.params.user, 0, {page:2, per_page:75}, function(err, data){
-		res.send(data);
-	});
+var col = new Discogs().user().collection();
+col.releases('USER_NAME', 0, {page: 2, per_page: 75}, function(err, data){
+	console.log(data);
 });
 ```
 
+### Discogs Auth
+Just provide the client constructor with your preferred way of [authentication](http://www.discogs.com/developers/#page:authentication).
+```javascript
+// Authenticate by user token
+var dis = new Discogs({userToken: 'YOUR_USER_TOKEN'});
+
+// Authenticate by consumer key and secret
+var dis = new Discogs({
+	consumerKey: 'YOUR_CONSUMER_KEY', 
+	consumerSecret: 'YOUR_CONSUMER_SECRET'
+});
+```
+
+The User-Agent can still be passed for authenticated calls.
+```javascript
+var dis = new Discogs('MyUserAgent/1.0', {userToken: 'YOUR_USER_TOKEN'});
+```
+
 ### OAuth
-Below are the steps that involve getting a valid OAuth access token from Discogs.
+Below are the steps that involve getting a valid OAuth access token from Discogs. Note that in the following examples the `app` variable is an [Express instance](http://expressjs.com/starter/hello-world.html) to handle incoming HTTP requests.
 
 #### 1. Get a request token
 ```javascript
 app.get('/authorize', function(req, res){
-	var dis = new Discogs();
-	dis.getRequestToken(
+	var oAuth = new Discogs().oauth();
+	oAuth.getRequestToken(
 		'YOUR_CONSUMER_KEY', 
 		'YOUR_CONSUMER_SECRET', 
 		'http://your-script-url/callback', 
@@ -99,8 +109,8 @@ After redirection to the Discogs authorize URL in step 1, authorize the applicat
 #### 3. Get an access token
 ```javascript
 app.get('/callback', function(req, res){
-	var dis = new Discogs(requestData);
-	dis.getAccessToken(
+	var oAuth = new Discogs(requestData).oauth();
+	oAuth.getAccessToken(
 		req.query.oauth_verifier, // Verification code sent back by Discogs
 		function(err, accessData){
 			// Persist "accessData" here for following OAuth calls 
@@ -120,24 +130,17 @@ app.get('/identity', function(req, res){
 	});
 });
 ```
-The User-Agent may still be passed for OAuth calls.
-```javascript
-var dis = new Discogs('MyUserAgent/1.0', accessData);
-```
 
 ### Images
 Image requests require authentication and are subject to [rate limiting](http://www.discogs.com/developers/#page:home,header:home-rate-limiting).
 ```javascript
-app.get('/image/:filename', function(req, res){
-	var db = new Discogs(accessData).database(),
-		file = req.params.filename;
-	db.image(file, function(err, data, rateLimit){
-		// Data contains the raw binary image data
-		require('fs').writeFile(file, data, 'binary', function(err){
-			// See your current limits
-			console.log(rateLimit);
-			res.send('Image saved!');
-		});
+var db = new Discogs(accessData).database(), file = 'R-176126-1322456477.jpeg';
+db.image(file, function(err, data, rateLimit){
+	// Data contains the raw binary image data
+	require('fs').writeFile(file, data, 'binary', function(err){
+		// See your current limits
+		console.log(rateLimit);
+		console.log('Image saved!');
 	});
 });
 ```
