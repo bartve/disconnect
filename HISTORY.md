@@ -1,8 +1,9 @@
-0.6.0 / unreleased
+0.6.0 / 2015-01-19
 ==================
   * OAuth authentication is no longer embedded in `DiscogsClient`
-  * Added OAuth signature method configuration
+  * Added OAuth signature method configuration option
   * Added support for the new `Discogs Auth` authentication methods
+  * Changed default OAuth signature method to `PLAINTEXT` due to problems with `HMAC-SHA1` + database search
 
 0.5.3 / 2014-12-02
 ==================

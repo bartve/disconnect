@@ -44,7 +44,7 @@ var Discogs = require('disconnect').Client;
 ```
 #### Go!
 
-Get the release data for the release that has the id 176126.
+Get the release data for a release with the id 176126.
 ```javascript
 var db = new Discogs().database();
 db.release(176126, function(err, data){
