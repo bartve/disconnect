@@ -66,6 +66,13 @@ col.releases('USER_NAME', 0, {page: 2, per_page: 75}, function(err, data){
 });
 ```
 
+### Output format
+User, artist and label profiles can be formatted in different ways: `plaintext`, `html` and `discogs`. `disconnect` defaults to `discogs`, but the output format can be set for each client instance.
+```javascript
+// Set the output format to HTML
+var dis = new Discogs().setConfig({outputFormat: 'html'});
+```
+
 ### Discogs Auth
 Just provide the client constructor with your preferred way of [authentication](http://www.discogs.com/developers/#page:authentication).
 ```javascript

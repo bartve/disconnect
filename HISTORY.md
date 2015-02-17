@@ -1,3 +1,7 @@
+0.6.1 / 2015-02-17
+==================
+  * Added setting output format for user, artist and label profiles through `DiscogsClient.setConfig({outputFormat: 'html'})`
+
 0.6.0 / 2015-01-19
 ==================
   * OAuth authentication is no longer embedded in `DiscogsClient`
