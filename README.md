@@ -139,15 +139,16 @@ app.get('/identity', function(req, res){
 ```
 
 ### Images
-Image requests require authentication and are subject to [rate limiting](http://www.discogs.com/developers/#page:home,header:home-rate-limiting).
+Image requests themselves don't require authentication, but obtaining the image URLs through, for example, release data does.
 ```javascript
-var db = new Discogs(accessData).database(), file = 'R-176126-1322456477.jpeg';
-db.image(file, function(err, data, rateLimit){
-	// Data contains the raw binary image data
-	require('fs').writeFile(file, data, 'binary', function(err){
-		// See your current limits
-		console.log(rateLimit);
-		console.log('Image saved!');
+var db = new Discogs(accessData).database();
+db.release(176126, function(err, data){
+	var url = data.images[0].resource_url;
+	db.image(url, function(err, data, rateLimit){
+		// Data contains the raw binary image data
+		require('fs').writeFile(file, data, 'binary', function(err){
+			console.log('Image saved!');
+		});
 	});
 });
 ```

@@ -1,3 +1,8 @@
+0.6.2 / 2015-02-25
+==================
+  * `database().image()` now requires the full image url as the first parameter due to the new Discogs image cluster
+  * Local request throttling by `disconnect` has been disabled for `database().image()`
+
 0.6.1 / 2015-02-17
 ==================
   * Added setting output format for user, artist and label profiles through `DiscogsClient.setConfig({outputFormat: 'html'})`
