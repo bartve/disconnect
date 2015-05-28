@@ -1,3 +1,7 @@
+0.6.3 / 2015-05-28
+==================
+  * Updated `oauth-1.0a` dependency
+
 0.6.2 / 2015-02-25
 ==================
   * `database().image()` now requires the full image url as the first parameter due to the new Discogs image cluster

@@ -19,7 +19,7 @@
     "test": "node test/all.js"
   },
   "dependencies": {
-    "oauth-1.0a": "0.1.x"
+    "oauth-1.0a": "0.2.x"
   },
   "devDependencies": {
     "nock": "^0.48.1",
