@@ -1,3 +1,8 @@
+0.6.4 / 2015-07-09
+==================
+  * Prevent `JSON.parse()` crash when the Discogs API returns HTML instead of json (maintainance mode)
+  * Added Discogs API version to `DiscogsClient` config (only the default `v2` is supported at the moment)
+
 0.6.3 / 2015-05-28
 ==================
   * Updated `oauth-1.0a` dependency

@@ -33,7 +33,7 @@ var tests = module.exports = [
 				wru.assert('Correct response data', (data && data.result === 'success'));
 			}));
 		},
-		teardown: function () {
+		teardown: function(){
 			nock.cleanAll();
 		}
 	}
