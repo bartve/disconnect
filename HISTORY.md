@@ -1,3 +1,7 @@
+0.6.5 / 2015-08-27
+==================
+  * Fixed a bug in `util.merge()`
+
 0.6.4 / 2015-07-09
 ==================
   * Prevent `JSON.parse()` crash when the Discogs API returns HTML instead of json (maintainance mode)
