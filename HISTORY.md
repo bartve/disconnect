@@ -1,3 +1,7 @@
+0.6.6 / 2015-08-31
+==================
+  * An empty search query in `database().search()` will no longer add the `q=` param to the search URL
+
 0.6.5 / 2015-08-27
 ==================
   * Fixed a bug in `util.merge()`
