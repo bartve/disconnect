@@ -1,3 +1,7 @@
+0.6.7 / 2015-09-15
+==================
+  * Fixed regression bug from version `0.6.6` involving double URL query string encoding in `database().search()`
+
 0.6.6 / 2015-08-31
 ==================
   * An empty search query in `database().search()` will no longer add the `q=` param to the search URL
