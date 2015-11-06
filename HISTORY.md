@@ -1,3 +1,8 @@
+0.6.8 / 2015-11-06
+==================
+  * Dependency updates
+  * Fixed a minor bug in `DiscogsClient.authenticated()`
+
 0.6.7 / 2015-09-15
 ==================
   * Fixed regression bug from version `0.6.6` involving double URL query string encoding in `database().search()`
