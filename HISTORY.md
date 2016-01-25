@@ -1,3 +1,8 @@
+0.7.0 / 2016-01-25
+==================
+  * The `util.queue` object literal has been replaced by a minimal `util.Queue` class
+  * `DiscogsClient` now has two new config params `requestLimit` and `requestLimitInterval`
+
 0.6.8 / 2015-11-06
 ==================
   * Dependency updates

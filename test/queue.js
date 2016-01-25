@@ -1,35 +1,38 @@
 var wru = require('wru'),
-	queue = require('../lib/queue.js');
+	queue = require('../lib/queue.js')();
 
 var tests = module.exports = [
 	{
-		name: 'Test queue.add() + queue.getLength() + queue.clear()',
+		name: 'Queue: Test setConfig()',
+		test: function(){
+			var customConfig = {
+				maxStack: 2, // Max 1 call queued in the stack
+				maxCalls: 5, // Max 5 calls per interval
+				interval: 5000, // 5 second interval
+			};
+			queue.setConfig(customConfig);
+			wru.assert('Custom config', customConfig.maxStack === queue.config.maxStack);
+		}
+	},{
+		name: 'Queue: Test add() + getLength() + clear()',
 		test: function(){
 			var dummy = function(){ return true; };
 			queue.add(dummy); //  1
-			queue.add(wru.async(function(err, remaining){ //  2
-				wru.assert('Remaining positions === 2', remaining === 2);
-				// We've done the assertions, the remaining queue items will only be in the way
-				queue.clear();
-				wru.assert('Cleared queue', (queue.getLength() === 0));
-			}));
+			queue.add(dummy); //  2
 			queue.add(dummy); //  3
 			queue.add(dummy); //  4
-			queue.add(dummy); //  5
-			queue.add(dummy); //  6
-			queue.add(dummy); //  7
-			queue.add(dummy); //  8
-			queue.add(dummy); //  9
-			queue.add(dummy); // 10
-			queue.add(wru.async(function(err){ // 11!
-				wru.assert('Too many requests, err.statusCode === 429', (err.statusCode === 429));
+			queue.add(wru.async(function(err, remainingFree, remainingStack){ // 5 (last free call)
+				wru.assert('Remaining free positions === 0', remainingFree === 0);
+				wru.assert('Remaining stack positions === 2', remainingStack === 2);
 			}));
-			wru.assert('Queue length === 10', (queue.getLength() === 10));
-		}
-	},{
-		name: 'Test queue.getMaxLength()',
-		test: function(){
-			wru.assert('Maxumum queue length === 10', queue.getMaxLength() === 10);
+			queue.add(dummy); //  6 (first in the stack)
+			queue.add(dummy); //  7 (second in the stack)
+			queue.add(wru.async(function(err){ // 8! Overflow
+				wru.assert('Too many requests, err.statusCode === 429', (err && (err.statusCode === 429)));
+			}));
+			wru.assert('Stack is full', (queue._stack.length === 2));
+			queue.clear(); // Empty stack
+			wru.assert('Stack has been cleared', (queue._stack.length === 0));
 		}
 	}
 ];

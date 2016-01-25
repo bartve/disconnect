@@ -3,7 +3,7 @@ var wru = require('wru'),
 
 var tests = module.exports = [
 	{
-		name: 'Test DiscogsError',
+		name: 'Error: Test DiscogsError',
 		test: function(){
 			var discogsError = new error.DiscogsError(403, 'Test');
 			wru.assert('Instance of DiscogsError', (discogsError instanceof error.DiscogsError));
@@ -11,7 +11,7 @@ var tests = module.exports = [
 			wru.assert('Status code === 403', (discogsError.statusCode === 403));
 		}
 	},{
-		name: 'Test AuthError',
+		name: 'Error: Test AuthError',
 		test: function(){
 			var authError = new error.AuthError();
 			wru.assert('Instance of AuthError', (authError instanceof error.AuthError));

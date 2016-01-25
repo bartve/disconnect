@@ -4,31 +4,31 @@ var wru = require('wru'),
 
 var tests = module.exports = [
 	{
-		name: 'Test DiscogsClient instance',
+		name: 'DiscogsClient: Test instance',
 		test: function(){
 			wru.assert('Instance of DiscogsClient', (new DiscogsClient() instanceof DiscogsClient));
 		}
 	},{
-		name: 'Test DiscogsClient.authenticated()',
+		name: 'DiscogsClient: Test authenticated()',
 		test: function(){
-			wru.assert('Instance of DiscogsClient', (new DiscogsClient().authenticated() === false));
+			wru.assert('Authentication level 1 === false', (new DiscogsClient().authenticated(1) === false));
 		}
 	},{
-		name: 'Test DiscogsClient._request()',
+		name: 'DiscogsClient: Test get()',
 		test: function(){
 			var client = new DiscogsClient();
-			client._request({url: '/labels/1'}, wru.async(function(err, data){
+			client.get({url: '/labels/1'}, wru.async(function(err, data){
 				wru.assert('No error', !err);
-				wru.assert('Correct response data', (data.id && (data.id === 1)));
+				wru.assert('Correct response data', (data && (data.id === 1)));
 			}));
 		}
 	},{
-		name: 'Test DiscogsClient with custom configuration',
+		name: 'DiscogsClient: Test custom configuration',
 		test: function(){
 			nock('https://www.example.com').get('/labels/1').reply(200, '{"result": "success"}');
 			
 			var client = new DiscogsClient().setConfig({host: 'www.example.com'});
-			client._request({url: '/labels/1'}, wru.async(function(err, data){
+			client.get({url: '/labels/1'}, wru.async(function(err, data){
 				wru.assert('No error', !err);
 				wru.assert('Correct response data', (data && data.result === 'success'));
 			}));
