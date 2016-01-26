@@ -146,7 +146,7 @@ db.release(176126, function(err, data){
 	var url = data.images[0].resource_url;
 	db.image(url, function(err, data, rateLimit){
 		// Data contains the raw binary image data
-		require('fs').writeFile(file, data, 'binary', function(err){
+		require('fs').writeFile('/tmp/image.jpg', data, 'binary', function(err){
 			console.log('Image saved!');
 		});
 	});
