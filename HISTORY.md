@@ -1,3 +1,7 @@
+0.7.2 / 2016-02-09
+==================
+  * Fixed default maximum number of requests per minute
+
 0.7.1 / 2016-01-26
 ==================
   * Added `database().labelReleases()` function
