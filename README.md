@@ -47,7 +47,7 @@ var Discogs = require('disconnect').Client;
 Get the release data for a release with the id 176126.
 ```javascript
 var db = new Discogs().database();
-db.release(176126, function(err, data){
+db.getRelease(176126, function(err, data){
 	console.log(data);
 });
 ```
@@ -61,7 +61,7 @@ Get page 2 of USER_NAME's public collection showing 75 releases.
 The second param is the collection folder ID where 0 is always the "All" folder.
 ```javascript
 var col = new Discogs().user().collection();
-col.releases('USER_NAME', 0, {page: 2, per_page: 75}, function(err, data){
+col.getReleases('USER_NAME', 0, {page: 2, per_page: 75}, function(err, data){
 	console.log(data);
 });
 ```
@@ -132,7 +132,7 @@ Simply provide the constructor with the `accessData` object persisted in step 3.
 ```javascript
 app.get('/identity', function(req, res){
 	var dis = new Discogs(accessData);
-	dis.identity(function(err, data){
+	dis.getIdentity(function(err, data){
 		res.send(data);
 	});
 });
@@ -142,9 +142,9 @@ app.get('/identity', function(req, res){
 Image requests themselves don't require authentication, but obtaining the image URLs through, for example, release data does.
 ```javascript
 var db = new Discogs(accessData).database();
-db.release(176126, function(err, data){
+db.getRelease(176126, function(err, data){
 	var url = data.images[0].resource_url;
-	db.image(url, function(err, data, rateLimit){
+	db.getImage(url, function(err, data, rateLimit){
 		// Data contains the raw binary image data
 		require('fs').writeFile('/tmp/image.jpg', data, 'binary', function(err){
 			console.log('Image saved!');

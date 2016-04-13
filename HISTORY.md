@@ -1,3 +1,9 @@
+0.8.0 / 2016-04-13
+==================
+  * Added the new release rating endpoints
+  * Changed a lot of function names to more consistent ones. Old function calls still work, but a deprecation 
+    notice is shown on the console and the old function names will be removed in the next major version.
+
 0.7.2 / 2016-02-09
 ==================
   * Fixed default maximum number of requests per minute
@@ -105,7 +111,7 @@
 
 0.3.1 / 2014-06-26
 ==================
-  * Fixed a litte bug in the calculation of free positions in the request queue
+  * Fixed a little bug in the calculation of free positions in the request queue
   * Started adding unit tests using `wru`
 
 0.3.0 / 2014-06-24
