@@ -1,3 +1,8 @@
+0.9.0 / 2016-06-15
+==================
+  * Added `user().getLists()`
+  * Added the new `user().list()` namespace for other list functions. Currently only contains `getItems()`.
+
 0.8.0 / 2016-04-13
 ==================
   * Added the new release rating endpoints
