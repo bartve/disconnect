@@ -19,7 +19,7 @@
     "test": "node test/all.js"
   },
   "dependencies": {
-    "oauth-1.0a": "1.x.x",
+    "oauth-1.0a": "2.x.x",
     "depd": "1.x.x"
   },
   "devDependencies": {
