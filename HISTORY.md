@@ -1,3 +1,7 @@
+0.9.1 / 2016-10-24
+==================
+  * Upgraded OAuth library to `oauth-1.0a` v2.0.0
+
 0.9.0 / 2016-06-15
 ==================
   * Added `user().getLists()`
