@@ -8,7 +8,8 @@
 
   * Covers all API endpoints
   * Supports [pagination](http://www.discogs.com/developers/#page:home,header:home-pagination), [rate limiting](http://www.discogs.com/developers/#page:home,header:home-rate-limiting), etc.
-  * All database, marketplace and user functions implement a standard `function(err, data, rateLimit)` format for the callback
+  * All database, marketplace and user functions implement a standard `function(err, data, rateLimit)` format for the callback or return a 
+    native JS [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) when no callback is provided
   * Easy access to protected endpoints with `Discogs Auth`
   * Includes OAuth 1.0a tools. Just plug in your consumer key and secret and do the OAuth dance
   * API functions grouped in their own namespace for easy access and isolation
@@ -67,6 +68,20 @@ col.getReleases('USER_NAME', 0, {page: 2, per_page: 75}, function(err, data){
 });
 ```
 
+### Promises
+When no callback is provided, the API functions return a native JS [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for easy chaining.
+
+```javascript
+var db = new Discogs().database();
+db.getRelease(1)
+	.then(function(release){ 
+		return db.getArtist(release.artists[0].id);
+	})
+	.then(function(artist){
+		console.log(artist.name);
+	});
+```
+
 ### Output format
 User, artist and label profiles can be formatted in different ways: `plaintext`, `html` and `discogs`. `disconnect` defaults to `discogs`, but the output format can be set for each client instance.
 ```javascript
@@ -111,6 +126,7 @@ app.get('/authorize', function(req, res){
 	);
 });
 ```
+
 #### 2. Authorize
 After redirection to the Discogs authorize URL in step 1, authorize the application.
 

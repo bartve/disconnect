@@ -1,3 +1,8 @@
+1.0.0 / 2016-10-27
+==================
+  * When no callback is provided, all API functions now return a native JS `Promise`
+  * Removed the non get/set method calls like `database.release(...)` deprecated in release `0.8.0`
+
 0.9.1 / 2016-10-24
 ==================
   * Upgraded OAuth library to `oauth-1.0a` v2.0.0

@@ -23,6 +23,19 @@ var tests = module.exports = [
 			}));
 		}
 	},{
+		name: 'DiscogsClient: Test Promise',
+		test: function(){
+			var client = new DiscogsClient();
+			var promise = client.about();
+			var isPromise = (typeof promise.then === 'function');
+			wru.assert('Returns Promise', isPromise);
+			if(isPromise){
+				promise.then(wru.async(function(data){
+					wru.assert('Promis resolved', (typeof data.disconnect !== 'undefined'));
+				}));
+			}
+		}
+	},{
 		name: 'DiscogsClient: Test custom configuration',
 		test: function(){
 			nock('https://www.example.com').get('/labels/1').reply(200, '{"result": "success"}');
