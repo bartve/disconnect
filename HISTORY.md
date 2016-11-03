@@ -1,3 +1,7 @@
+1.0.1 / 2016-11-03
+==================
+  * Fixed issue with `database().search()` when using a `Promise`
+
 1.0.0 / 2016-10-27
 ==================
   * When no callback is provided, all API functions now return a native JS `Promise`
