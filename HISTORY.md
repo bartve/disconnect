@@ -1,3 +1,7 @@
+1.0.2 / 2016-11-10
+==================
+  * Added `collection().getReleaseInstances()`
+
 1.0.1 / 2016-11-03
 ==================
   * Fixed issue with `database().search()` when using a `Promise`
