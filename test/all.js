@@ -1,9 +1,11 @@
-var wru = require('wru'),
-	tests = [],
-	files = ['error','queue','util','client','database'];
-	
-for(var i in files){
-	tests = tests.concat(require('./'+files[i]+'.js'));
-}
+'use strict';
+
+const wru = require('wru'),
+	files = ['error', 'queue', 'util', 'client', 'database'];
+let tests = [];
+
+files.forEach((file) => {
+	tests = tests.concat(require('./' + file + '.js'));
+});
 
 wru.test(tests);
