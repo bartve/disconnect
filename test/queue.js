@@ -8,7 +8,7 @@ const tests = module.exports = [
             let queue = new Queue({
                 maxStack: 2, // Max 1 call queued in the stack
                 maxCalls: 5, // Max 5 calls per interval
-                interval: 5000, // 5 second interval
+                interval: 5000 // 5 second interval
             });
             let dummy = function() { return true; };
             queue.add(dummy); //  1
