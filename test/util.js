@@ -1,3 +1,5 @@
+'use strict';
+
 const wru = require('wru'),
     Util = require('../lib/util.js');
 

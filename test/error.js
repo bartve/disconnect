@@ -1,3 +1,5 @@
+'use strict';
+
 const wru = require('wru'),
     error = require('../lib/error.js');
 

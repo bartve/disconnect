@@ -1,15 +1,14 @@
 'use strict';
 
-var discogs = module.exports = {};
+const Util = require('./lib/util.js'),
+    DiscogsClient = require('./lib/client.js');
 
 /**
- * Expose Discogs utility function library
+ * Expose the DiscogsClient and Util classes
  */
- 
-discogs.util = require('./lib/util.js');
-
-/**
- * Expose Discogs Client class
- */
-
-discogs.Client = require('./lib/client.js');
+module.exports = {
+    Client: DiscogsClient,
+    Util: Util,
+    /** @deprecated Use Util instead */
+    util: Util
+};

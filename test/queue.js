@@ -1,3 +1,5 @@
+'use strict';
+
 const wru = require('wru'),
     Queue = require('../lib/queue.js');
 
