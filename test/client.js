@@ -49,6 +49,51 @@ var tests = module.exports = [
 		teardown: function(){
 			nock.cleanAll();
 		}
+	},{
+		name: 'DiscogsClient: Test search without query but with params',
+		test: function(){
+			nock('https://www.example.com').get('/database/search?artist=X&title=Y&q=').reply(200, '{"result": "success"}');
+
+			var client = new DiscogsClient('agent', {consumerKey: 'u', consumerSecret: 'p'}).setConfig({host: 'www.example.com'});
+			var db = client.database();
+			db.search({artist: 'X', title: 'Y'}, wru.async(function(err, data){
+				wru.assert('No error', !err);
+				wru.assert('Correct response data', (data && data.result === 'success'));
+			}));
+		},
+		teardown: function(){
+			nock.cleanAll();
+		}
+	},{
+		name: 'DiscogsClient: Test search with query and params',
+		test: function(){
+			nock('https://www.example.com').get('/database/search?artist=X&title=Y&q=somequery').reply(200, '{"result": "success"}');
+
+			var client = new DiscogsClient('agent', {consumerKey: 'u', consumerSecret: 'p'}).setConfig({host: 'www.example.com'});
+			var db = client.database();
+			db.search('somequery', {artist: 'X', title: 'Y'}, wru.async(function(err, data){
+				wru.assert('No error', !err);
+				wru.assert('Correct response data', (data && data.result === 'success'));
+			}));
+		},
+		teardown: function(){
+			nock.cleanAll();
+		}
+	},{
+		name: 'DiscogsClient: Test search with query only',
+		test: function(){
+			nock('https://www.example.com').get('/database/search?q=somequery').reply(200, '{"result": "success"}');
+
+			var client = new DiscogsClient('agent', {consumerKey: 'u', consumerSecret: 'p'}).setConfig({host: 'www.example.com'});
+			var db = client.database();
+			db.search('somequery', wru.async(function(err, data){
+				wru.assert('No error', !err);
+				wru.assert('Correct response data', (data && data.result === 'success'));
+			}));
+		},
+		teardown: function(){
+			nock.cleanAll();
+		}
 	}
 ];
 
