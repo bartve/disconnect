@@ -1,3 +1,7 @@
+1.2.0 / 2017-06-07
+  * Query parameter is now optional for `database.search()`
+  * Implemented different request limits for authenticated and non-authenticated clients
+
 1.1.0 / 2017-02-23
 ==================
   * Implemented new Discogs rate limiting headers. The rate limit param in a callback now looks like: `{ limit: 240, used: 1, remaining: 239 }`

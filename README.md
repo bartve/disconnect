@@ -26,7 +26,7 @@
 The global structure of `disconnect` looks as follows:
 ```
 require('disconnect') -> new Client() -> oauth()
-									  -> database()
+                                      -> database()
                                       -> marketplace()
                                       -> user() -> collection()
                                                 -> wantlist()
