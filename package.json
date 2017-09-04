@@ -1,7 +1,7 @@
 {
   "name": "disconnect",
   "description": "A full featured Discogs API v2.0 client library",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "keywords": ["discogs", "api", "client", "oauth"],
   "homepage": "https://github.com/bartve/disconnect",
   "bugs": "https://github.com/bartve/disconnect/issues",

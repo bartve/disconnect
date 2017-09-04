@@ -1,4 +1,9 @@
+1.2.1 / 2017-09-04
+==================
+  * Fixed bug in image downloads (and any url different from `api.discogs.com`)
+
 1.2.0 / 2017-06-07
+==================
   * Query parameter is now optional for `database.search()`
   * Implemented different request limits for authenticated and non-authenticated clients
 
