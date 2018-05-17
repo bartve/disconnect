@@ -89,6 +89,8 @@ User, artist and label profiles can be formatted in different ways: `plaintext`,
 var dis = new Discogs().setConfig({outputFormat: 'html'});
 ```
 
+Note that the HTML and plaintext formats will be available as `profile_html` and `profile_plaintext` respectively.
+
 ### Discogs Auth
 Just provide the client constructor with your preferred way of [authentication](http://www.discogs.com/developers/#page:authentication).
 ```javascript
