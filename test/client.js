@@ -49,6 +49,26 @@ var tests = module.exports = [
         teardown: function(){
             nock.cleanAll();
         }
+    },
+    {
+        name: 'DiscogsClient: Test outputFormat HTML option',
+        test: function(){
+            var client = new DiscogsClient().setConfig({outputFormat: 'html'});
+            client.get({url: '/artists/15885'}, wru.async(function(err, data){
+                wru.assert('No error', !err);
+                wru.assert('Returns HTML format for profile', (data && data.profile_html))
+            }));
+        }
+    },
+    {
+        name: 'DiscogsClient: Test outputFormat plaintext option',
+        test: function(){
+            var client = new DiscogsClient().setConfig({outputFormat: 'plaintext'});
+            client.get({url: '/artists/15885'}, wru.async(function(err, data){
+                wru.assert('No error', !err);
+                wru.assert('Returns plain text format for profile', (data && data.profile_plaintext))
+            }));
+        }
     }
 ];
 
