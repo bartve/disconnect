@@ -113,7 +113,7 @@
 ==================
   * Replaced some short circuit evaluations and improved the general readability of `client.js`
   * Implemented a more elegant way to require OAuth authentication for the `get()`, `post()`, `put()` and `delete()` functions of `DiscogsClient`
-  * **Breaking change:** `DiscogsClient.getAccessToken()` now only acceps **two** parameters: `verifier` and `callback`. 
+  * **Breaking change:** `DiscogsClient.getAccessToken()` now only accepts **two** parameters: `verifier` and `callback`. 
     The former `requestObject` parameter is now taken from the `oauth` property of the `DiscogsClient` instance. 
     For further info see the updated `README.md`
 
