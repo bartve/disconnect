@@ -170,6 +170,32 @@ db.getRelease(176126, function(err, data){
 });
 ```
 
+## Examples
+
+Searching discogs for a cover image
+
+```javascript
+var Discogs = require('disconnect').Client;
+
+var db = new Discogs({userToken: 'YOUR_USER_TOKEN'}).database();
+
+db.search({artist: "Blonde Redhead", release_title: "Misery Is A Butterfly", type: "master"})
+    .then(function (searchResult) {
+
+        if (searchResult.results.length > 0) {
+
+            console.log("Found an album cover!");
+            console.log("URL: " + searchResult.results[0].cover_image)
+        }
+        else
+            console.log("No album cover was found.")
+
+    })
+    .catch(function (err) {
+        console.error("Error: " + err);
+    });
+```
+
 ## Resources
 
   * [Discogs API documentation](http://www.discogs.com/developers/)
