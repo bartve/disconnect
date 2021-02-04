@@ -1,3 +1,7 @@
+1.2.2 / 2021-02-04
+==================
+  * Fixed accept headers for non-json data
+
 1.2.1 / 2017-09-04
 ==================
   * Fixed bug in image downloads (and any url different from `api.discogs.com`)
