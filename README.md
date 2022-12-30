@@ -8,12 +8,12 @@
 
   * Covers all API endpoints
   * Supports [pagination](http://www.discogs.com/developers/#page:home,header:home-pagination), [rate limiting](http://www.discogs.com/developers/#page:home,header:home-rate-limiting), etc.
-  * All database, marketplace and user functions implement a standard `function(err, data, rateLimit)` format for the callback or return a 
+  * All database, marketplace and user functions implement a standard `function(err, data, rateLimit)` format for the callback or return a
     native JS [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) when no callback is provided
   * Easy access to protected endpoints with `Discogs Auth`
   * Includes OAuth 1.0a tools. Just plug in your consumer key and secret and do the OAuth dance
   * API functions grouped in their own namespace for easy access and isolation
-  
+
 ## Todo
 
   * Add more tests
@@ -74,7 +74,7 @@ When no callback is provided, the API functions return a native JS [Promise](htt
 ```javascript
 var db = new Discogs().database();
 db.getRelease(1)
-	.then(function(release){ 
+	.then(function(release){
 		return db.getArtist(release.artists[0].id);
 	})
 	.then(function(artist){
@@ -97,7 +97,7 @@ var dis = new Discogs({userToken: 'YOUR_USER_TOKEN'});
 
 // Authenticate by consumer key and secret
 var dis = new Discogs({
-	consumerKey: 'YOUR_CONSUMER_KEY', 
+	consumerKey: 'YOUR_CONSUMER_KEY',
 	consumerSecret: 'YOUR_CONSUMER_SECRET'
 });
 ```
@@ -115,11 +115,11 @@ Below are the steps that involve getting a valid OAuth access token from Discogs
 app.get('/authorize', function(req, res){
 	var oAuth = new Discogs().oauth();
 	oAuth.getRequestToken(
-		'YOUR_CONSUMER_KEY', 
-		'YOUR_CONSUMER_SECRET', 
-		'http://your-script-url/callback', 
+		'YOUR_CONSUMER_KEY',
+		'YOUR_CONSUMER_SECRET',
+		'http://your-script-url/callback',
 		function(err, requestData){
-			// Persist "requestData" here so that the callback handler can 
+			// Persist "requestData" here so that the callback handler can
 			// access it later after returning from the authorize url
 			res.redirect(requestData.authorizeUrl);
 		}
@@ -137,7 +137,7 @@ app.get('/callback', function(req, res){
 	oAuth.getAccessToken(
 		req.query.oauth_verifier, // Verification code sent back by Discogs
 		function(err, accessData){
-			// Persist "accessData" here for following OAuth calls 
+			// Persist "accessData" here for following OAuth calls
 			res.send('Received access token!');
 		}
 	);
@@ -173,7 +173,8 @@ db.getRelease(176126, function(err, data){
 ## Resources
 
   * [Discogs API documentation](http://www.discogs.com/developers/)
-  * [The OAuth Bible](http://oauthbible.com/)
+  * [The OAuth Bible](https://gist.github.com/avatsav/6256246)
+	* [OAuth Community Site](https://oauth.net/)
 
 ## License
 
