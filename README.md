@@ -174,7 +174,8 @@ db.getRelease(176126, function(err, data){
 
   * [Discogs API documentation](http://www.discogs.com/developers/)
   * [The OAuth Bible](https://gist.github.com/avatsav/6256246)
-	* [OAuth Community Site](https://oauth.net/)
+  * [OAuth Community Site](https://oauth.net/)
+
 
 ## License
 
