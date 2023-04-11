@@ -1,13 +1,14 @@
 {
   "name": "disconnect",
-  "description": "A full-featured Discogs API v2.0 client library",
-  "version": "1.3.0",
+  "description": "An ES6 version of the dicsonnect library, with CommonJS compatibility",
+  "version": "1.4.0",
   "keywords": ["discogs", "api", "client", "oauth"],
-  "homepage": "https://github.com/bartve/disconnect",
-  "bugs": "https://github.com/bartve/disconnect/issues",
+  "homepage": "https://github.com/CoreyT355/disconnect",
+  "bugs": "https://github.com/CoreyT355/disconnect/issues",
   "license": "MIT",
-  "author": "Bart van Eijck <voodoo107@hotmail.com>",
+  "author": "Corey T. <coreyatess@gmail.com> (CJS version), Bart van Eijck <voodoo107@hotmail.com> (Original Code)",
   "main": "index.js",
+  "type": "commonjs",
   "directories": {
     "lib": "./lib"
   },

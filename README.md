@@ -4,6 +4,15 @@
 
 [![Dependency Status](https://david-dm.org/bartve/disconnect.png)](https://david-dm.org/bartve/disconnect)
 
+This is a fork updated to allow CommonJS compaibility, and use ES6 as the main codebase.
+
+As such this can now be imported using:
+```
+import { Client } from 'disconnect';
+```
+
+Still need types for TS support.
+
 ## Features
 
   * Covers all API endpoints

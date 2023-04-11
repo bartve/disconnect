@@ -1,3 +1,9 @@
+1.4.0 / 2023-04-11
+==================
+  * Updated package.json to set type as commonjs
+  * Renamed original master branch to "legacy"
+  * Renamed es6 branch to "main"
+  
 1.3.0 / 2021-
 ==================
   * The great ES6 update with lots of restructuring under the hood
